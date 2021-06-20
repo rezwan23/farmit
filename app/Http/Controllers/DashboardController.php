@@ -23,4 +23,9 @@ class DashboardController extends Controller
 
         return redirect('/');
     }
+
+    public function showFarmerPosts(Request $request)
+    {
+        return Inertia::render('Admin/FarmerPosts');
+    }
 }

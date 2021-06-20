@@ -21,7 +21,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [FrontEndController::class, 'index']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/farmer-posts', [DashboardController::class, 'showFarmerPosts'])->name('farmerposts.index');
+
+});
 
 Route::post('/logout-web', [DashboardController::class, 'logout'])->name('logout.web');
 
