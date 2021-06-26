@@ -21,7 +21,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -68,6 +68,9 @@
                 <b>Version</b> 1.0.0
             </div>
         </footer>
+
+        @csrf
+
     </div>
     <!-- ./wrapper -->
 

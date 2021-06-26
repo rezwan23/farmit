@@ -38,7 +38,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-header">ADMIN MENUS</li>
             <li class="nav-item">
-              <inertia-link :href="route('farmerposts.index')" class="nav-link">
+              <inertia-link :href="route('farmerposts.create')" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
                 <p>Create Farmer Post</p>
               </inertia-link>

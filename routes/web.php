@@ -26,9 +26,15 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/farmer-posts', [DashboardController::class, 'showFarmerPosts'])->name('farmerposts.index');
+    Route::get('/create-farmer-posts', [DashboardController::class, 'createFarmerPost'])->name('farmerposts.create');
+    
+    Route::get('/farmer-posts-all', [DashboardController::class, 'showFarmerPosts'])->name('farmerposts.index');
 
 });
+
+Route::post('save-sell-post', [DashboardController::class, 'saveSellPost'])->name('saveSalePost');
+Route::post('delete-sell-post/{item}', [DashboardController::class, 'deletePost']);
+
 
 Route::post('/logout-web', [DashboardController::class, 'logout'])->name('logout.web');
 

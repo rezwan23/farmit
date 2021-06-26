@@ -26,6 +26,9 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
-        "v-select2-component": "^0.4.7"
+        "@sweetalert2/themes": "^5.0.0",
+        "sweetalert2": "^11.0.18",
+        "v-select2-component": "^0.4.7",
+        "vue3-select2-component": "^0.1.7"
     }
 }
