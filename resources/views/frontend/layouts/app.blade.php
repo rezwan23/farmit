@@ -62,35 +62,11 @@
                                     </div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
-                                            <li class="dropdown"><a href="index.html">Home</a>
-                                                <ul class="submenu">
-                                                    <li><a href="index.html">Home One</a></li>
-                                                    <li><a href="index-2.html">Home Two</a></li>
-                                                    <li><a href="index-3.html">Home Three</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="farming-strategy.html">Farming</a></li>
-                                            <li class="dropdown"><a href="#">Pages</a>
-                                                <ul class="submenu">
-                                                    <li><a href="pricing.html">Pricing Plan</a></li>
-                                                    <li><a href="our-project.html">Our Project</a></li>
-                                                    <li><a href="project-details.html">Project Details</a></li>
-                                                </ul>
-                                            </li>
+                                            
                                             <li class="active dropdown"><a href="#">Shop</a>
-                                                <ul class="submenu">
-                                                    <li class="active"><a href="shop.html">Our Shop</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                </ul>
+                                                
                                             </li>
-                                            <li class="dropdown"><a href="#">Blog</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">Our Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">contacts</a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
@@ -158,7 +134,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="header-btn"><a href="#" class="btn gradient-btn">Start Now</a></li>
+                                            <li class="header-btn"><a href="/login" class="btn gradient-btn">Login/Register</a></li>
                                         </ul>
                                     </div>
                                 </nav>
