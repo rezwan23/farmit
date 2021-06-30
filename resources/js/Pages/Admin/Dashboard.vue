@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Main Sidebar Container -->
-    <Sidebar></Sidebar>
+    <Sidebar :user="user"></Sidebar>
     
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -97,6 +97,9 @@
 import Sidebar from './Sidebar'
 import Header from './Header'
 export default {
-    components : {Sidebar, Header}
+    components : {Sidebar, Header},
+    props : {
+      user : {}
+    },
 }
 </script>

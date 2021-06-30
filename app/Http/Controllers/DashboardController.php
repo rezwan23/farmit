@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarrierPost;
 use App\Models\SellPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Admin/Dashboard');
+        return Inertia::render('Admin/Dashboard', ['user' => auth()->user()]);
     }
 
     public function logout(Request $request)
@@ -53,7 +54,6 @@ class DashboardController extends Controller
 
         $image = $request->file('product_image')->store('posts');
 
-        // dd($request->all());
 
         SellPost::create(array_merge($request->except('product_image'), ['product_image' => $image]));
 
@@ -64,6 +64,46 @@ class DashboardController extends Controller
     public function deletePost(SellPost $item)
     {
         Storage::delete($item->product_image);
+        $item->delete();
+        return response(['message' => 'Item Deleted!']);
+    }
+
+    public function createCarrierPost(Request $request)
+    {
+        return Inertia::render('Admin/CreateCarrierPost', ['user' => auth()->user()]);
+    }
+
+    public function myCarrierPost(Request $request)
+    {
+        // dd(CarrierPost::with('fromDistrict', 'toDistrict', 'fromThana', 'toThana', 'fromPostOffice', 'toPostOffice')->where('user_id', auth()->user()->id)->get());
+        return Inertia::render('Admin/MyCarrierPost', [
+            'user' => auth()->user(), 
+            'posts' => CarrierPost::with('fromDistrict', 'toDistrict', 'fromThana', 'toThana', 'fromPostOffice', 'toPostOffice')->where('user_id', auth()->user()->id)->get()
+        ]);
+    }
+
+    public function saveCarrierPost(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required', 
+            'from_district_id' => 'required', 
+            'from_thana_id' => 'required',
+            'from_post_office_id' => 'required',
+            'to_district_id' => 'required', 
+            'to_thana_id' => 'required',
+            'to_post_office_id' => 'required',
+            'description' => 'required',
+            'journey_date_and_time' => 'required'
+        ]);
+
+
+        CarrierPost::create($request->all());
+        
+        return response(['message' => 'Carrier Post Stored!']);
+    }
+
+    public function deleteCarrierPost(CarrierPost $item)
+    {
         $item->delete();
         return response(['message' => 'Item Deleted!']);
     }

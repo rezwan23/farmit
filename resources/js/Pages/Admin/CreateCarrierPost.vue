@@ -12,7 +12,7 @@
           <div class="card">
             <h4 class="card-header">Create Farmer Post
               <span class="float-right">
-                <inertia-link :href="route('farmerposts.index')" class="btn btn-primary btn-sm">All Posts</inertia-link>
+                <inertia-link :href="route('carrierpost.all.my')" class="btn btn-primary btn-sm">All My Carrier Post</inertia-link>
               </span>
             </h4>
             <form @submit.prevent id="farmerPostCreateForm" method="post" enctype="multipart/form-data">
@@ -20,30 +20,16 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="">Product Name</label>
-                      <input type="text" class="form-control" name="product_name" :class="errors.hasOwnProperty('product_name') ? 'is-invalid' : ''">
-                      <span v-if="errors.hasOwnProperty('product_name')" class="text-danger">{{errors.product_name[0]}}</span>
+                      <label for="">Journer Date And Time</label>
+                      <input type="datetime-local" class="form-control" name="journey_date_and_time" :class="errors.hasOwnProperty('journer_date_and_time') ? 'is-invalid' : ''">
+                      <span v-if="errors.hasOwnProperty('journey_date_and_time')" class="text-danger">{{errors.journer_date_and_time[0]}}</span>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
-                      <label for="">Product Image</label>
-                      <input type="file" class="form-control" name="product_image" :class="errors.hasOwnProperty('product_image') ? 'is-invalid' : ''">
-                      <span v-if="errors.hasOwnProperty('product_image')" class="text-danger">{{errors.product_image[0]}}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="">Product Descrition</label>
-                      <textarea name="details" class="form-control" id="" cols="30" rows="10"></textarea>
-                      <span v-if="errors.hasOwnProperty('product_image')" class="text-danger">{{errors.product_image[0]}}</span>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="">Sell Price</label>
-                      <input type="number" class="form-control" name="sell_price" :class="errors.hasOwnProperty('sell_price') ? 'is-invalid' : ''">
-                      <span v-if="errors.hasOwnProperty('sell_price')" class="text-danger">{{errors.sell_price[0]}}</span>
+                      <label for="">Descrition</label>
+                      <textarea name="description" class="form-control" id="" cols="30" rows="3"></textarea>
+                      <span v-if="errors.hasOwnProperty('description')" class="text-danger">{{errors.description[0]}}</span>
                     </div>
                   </div>
                 </div>
@@ -51,20 +37,42 @@
 
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="">District</label>
-                      <select2 :id="'district_id'" :name="'district_id'" @select="getThanaAndPostOffice" :options="formattedDistricts" :settings="{width: '100%'}"></select2>
+                      <label for="">From District</label>
+                      <select2 :id="'from_district_id'" :name="'from_district_id'" @select="getThanaAndPostOffice" :options="formattedDistricts" :settings="{width: '100%'}"></select2>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Thana</label>
-                      <select2 :id="'thana_id'" :name="'thana_id'" :options="formattedThanas" :settings="{width: '100%'}"></select2>
+                      <select2 :id="'from_thana_id'" :name="'from_thana_id'" :options="formattedThanas" :settings="{width: '100%'}"></select2>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="">Post Office</label>
-                      <select2 :id="'post_office_id'" :name="'post_office_id'" :options="formattedPostOffices" :settings="{width: '100%'}"></select2>
+                      <select2 :id="'from_post_office_id'" :name="'from_post_office_id'" :options="formattedPostOffices" :settings="{width: '100%'}"></select2>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">To District</label>
+                      <select2 :id="'to_district_id'" :name="'to_district_id'" @select="getToThanaAndPostOffice" :options="formattedDistricts" :settings="{width: '100%'}"></select2>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Thana</label>
+                      <select2 :id="'to_thana_id'" :name="'to_thana_id'" :options="formattedToThanas" :settings="{width: '100%'}"></select2>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="">Post Office</label>
+                      <select2 :id="'to_post_office_id'" :name="'to_post_office_id'" :options="formattedToPostOffices" :settings="{width: '100%'}"></select2>
                     </div>
                   </div>
                 </div>
@@ -111,6 +119,8 @@ export default {
       districts: [],
       postOffices: [],
       thanas: [],
+      toThanas : [],
+      toPostOffices : [],
     };
   },
   computed: {
@@ -136,9 +146,31 @@ export default {
       }
       return data;
     },
+    formattedToThanas() {
+      let data = [];
+      for (let item of this.toThanas) {
+        let object = {
+          id: item.id,
+          text: `${item.name}`,
+        };
+        data.push(object);
+      }
+      return data;
+    },
     formattedPostOffices() {
       let data = [];
       for (let item of this.postOffices) {
+        let object = {
+          id: item.id,
+          text: `${item.name}`,
+        };
+        data.push(object);
+      }
+      return data;
+    },
+    formattedToPostOffices() {
+      let data = [];
+      for (let item of this.toPostOffices) {
         let object = {
           id: item.id,
           text: `${item.name}`,
@@ -162,6 +194,16 @@ export default {
           this.postOffices = res.data.postOffices;
         });
     },
+    getToThanaAndPostOffice(event, item) {
+      axios
+        .get(
+          `${this.apiUrl}/get-data?provider=ThanaAndPostOffices&district_id=${event.id}`
+        )
+        .then((res) => {
+          this.toThanas = res.data.thanas;
+          this.toPostOffices = res.data.postOffices;
+        });
+    },
     getDistricts() {
       axios.get(`${this.apiUrl}/get-data?provider=Districts`).then((res) => {
         this.districts = res.data;
@@ -171,7 +213,7 @@ export default {
       let data = new FormData(document.getElementById('farmerPostCreateForm'))
       data.append('_token', $('input[name=_token]').val())
       data.append('user_id', this.user.id)
-      axios.post('save-sell-post', data)
+      axios.post('save-carrier-post', data)
       .then(res=>{
         showMessage(res.data.message, 'success')
         setTimeout(function(){

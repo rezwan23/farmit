@@ -12,16 +12,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img
-              src="/admin/dist/img/user2-160x160.jpg"
-              class="img-circle elevation-2"
-              alt="User Image"
-            />
           </div>
           <div class="info">
             <a href="#" class="d-block"
-              >{{'Admin'}} -
-              {{'Admin'}}</a
+              >{{ user.name }} -
+              {{user.type}}</a
             >
           </div>
         </div>
@@ -36,18 +31,30 @@
           >
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-header">ADMIN MENUS</li>
-            <li class="nav-item">
+            <li class="nav-header"> MENUS</li>
+            <li class="nav-item" v-if="user.type == 'Farmer'">
               <inertia-link :href="route('farmerposts.create')" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
                 <p>Create Farmer Post</p>
               </inertia-link>
             </li>
-            <li class="nav-item">
-              <a href="pages/kanban.html" class="nav-link">
-                <i class="nav-icon fas fa-columns"></i>
-                <p>Kanban Board</p>
-              </a>
+            <li class="nav-item" v-if="user.type == 'Farmer'">
+              <inertia-link :href="route('farmerposts.index')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All My Farmer Posts</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'Carrier'">
+              <inertia-link :href="route('carrierpost.create')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>Create Carrier Post</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'Carrier'">
+              <inertia-link :href="route('carrierpost.all.my')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All My Carrier Posts</p>
+              </inertia-link>
             </li>
           </ul>
         </nav>
@@ -62,7 +69,7 @@
 
 
 export default {
-    
+    props : {user : {}}
 }
 
 

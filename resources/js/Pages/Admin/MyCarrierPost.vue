@@ -14,7 +14,7 @@
               All My Farmer Post
               <span class="float-right">
                 <inertia-link
-                  :href="route('farmerposts.create')"
+                  :href="route('carrierpost.create')"
                   class="btn btn-primary btn-sm"
                   >Create Post</inertia-link
                 >
@@ -25,21 +25,23 @@
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Name</th>
-                    <th>Image</th>
+                    <td>Journey Date And Time</td>
+                    <th>Description</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="(item, index) in posts" :key="'post' + index">
                     <td>{{ index + 1 }}</td>
-                    <td>{{ item.product_name }}</td>
+                    <td>{{dateFormat(item.journey_date_and_time)}}</td>
+                    <td>{{ item.description }}</td>
                     <td>
-                      <img
-                        style="width: 150px"
-                        :src="`/uploads/${item.product_image}`"
-                        alt=""
-                      />
+                      {{item.from_district.name}} - {{item.from_thana.name}} - {{item.from_post_office.name}}
+                    </td>
+                    <td>
+                      {{item.to_district.name}} - {{item.to_thana.name}} - {{item.to_post_office.name}}
                     </td>
                     <td>
                       <button
@@ -66,6 +68,7 @@
 import Sidebar from "./Sidebar.vue";
 import Header from "./Header.vue";
 import Select2 from "vue3-select2-component";
+import moment from 'moment';
 
 import { showMessage } from "./helpers.js";
 import Input from "@/Components/Input.vue";
@@ -98,7 +101,7 @@ export default {
       let flag = confirm("Are You Sure??");
       if (flag) {
         axios
-          .post(`delete-sell-post/` + item.id)
+          .post(`delete-carrier-post/` + item.id)
           .then((res) => {
             showMessage(res.data.message, "success");
             window.location.reload();
@@ -108,6 +111,9 @@ export default {
           });
       }
     },
+    dateFormat(date){
+      return moment(date).format('LLLL')
+    }
   },
 };
 </script>

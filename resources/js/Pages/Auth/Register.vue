@@ -13,6 +13,24 @@
         </div>
 
         <div class="mt-4">
+            <breeze-label for="phone_no" value="Phone Number" />
+            <breeze-input id="phone_no" type="text" class="mt-1 block w-full" v-model="form.phone_no" required autocomplete="new-password" />
+        </div>
+
+        <div class="mt-4">
+            <breeze-label for="nid" value="NID" />
+            <breeze-input id="nid" type="text" class="mt-1 block w-full" v-model="form.nid" required autocomplete="new-password" />
+        </div>
+
+        <div class="mt-4">
+            <breeze-label for="tyoe" value="Type" />
+            <select id="phone_no" type="s" class="mt-1 block w-full" v-model="form.type" required autocomplete="new-password" >
+                <option>Farmer</option>
+                <option>Carrier</option>
+            </select>
+        </div>
+
+        <div class="mt-4">
             <breeze-label for="password" value="Password" />
             <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
         </div>
@@ -59,6 +77,9 @@
                     password: '',
                     password_confirmation: '',
                     terms: false,
+                    nid : '',
+                    phone_no: '',
+                    type:'',
                 })
             }
         },
@@ -66,7 +87,8 @@
         methods: {
             submit() {
                 this.form.post(this.route('register'), {
-                    onFinish: () => this.form.reset('password', 'password_confirmation'),
+                    onFinish: () => {this.form.reset('password', 'password_confirmation')},
+                    onSuccess: () => {window.location.reload()}
                 })
             }
         }
