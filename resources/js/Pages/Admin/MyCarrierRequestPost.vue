@@ -3,7 +3,7 @@
     <Sidebar :user="user"></Sidebar>
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <Header title="Carrier Posts"></Header>
+      <Header title="Carrier Request Posts"></Header>
       <!-- /.content-header -->
 
       <!-- Main content -->
@@ -11,10 +11,10 @@
         <div class="container-fluid">
           <div class="card">
             <h4 class="card-header">
-              All My Carrier Post
+              All My Request Post
               <span v-if="user.type != 'admin'" class="float-right">
                 <inertia-link
-                  :href="route('carrierpost.create')"
+                  :href="route('carrierposts.request')"
                   class="btn btn-primary btn-sm"
                   >Create Post</inertia-link
                 >
@@ -101,7 +101,7 @@ export default {
       let flag = confirm("Are You Sure??");
       if (flag) {
         axios
-          .post(`delete-carrier-post/` + item.id)
+          .post(`delete-carrier-request-post/` + item.id)
           .then((res) => {
             showMessage(res.data.message, "success");
             window.location.reload();

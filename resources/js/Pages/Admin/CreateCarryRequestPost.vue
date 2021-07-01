@@ -3,16 +3,16 @@
     <Sidebar :user="user"></Sidebar>
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <Header title="Carrier Posts"></Header>
+      <Header title="Carrier Request Posts"></Header>
       <!-- /.content-header -->
 
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
           <div class="card">
-            <h4 class="card-header">Create Carrier Post
+            <h4 class="card-header">Create Carry Request Post
               <span class="float-right">
-                <inertia-link :href="route('carrierpost.all.my')" class="btn btn-primary btn-sm">All My Carrier Post</inertia-link>
+                <inertia-link :href="route('carrierrequestpost.all.my')" class="btn btn-primary btn-sm">All My Carrier Request Post</inertia-link>
               </span>
             </h4>
             <form @submit.prevent id="farmerPostCreateForm" method="post" enctype="multipart/form-data">
@@ -213,7 +213,7 @@ export default {
       let data = new FormData(document.getElementById('farmerPostCreateForm'))
       data.append('_token', $('input[name=_token]').val())
       data.append('user_id', this.user.id)
-      axios.post('save-carrier-post', data)
+      axios.post('save-carrier-request-post', data)
       .then(res=>{
         showMessage(res.data.message, 'success')
         setTimeout(function(){

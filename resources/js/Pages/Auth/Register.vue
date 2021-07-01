@@ -27,6 +27,7 @@
             <select id="phone_no" type="s" class="mt-1 block w-full" v-model="form.type" required autocomplete="new-password" >
                 <option>Farmer</option>
                 <option>Carrier</option>
+                <option>Buyer</option>
             </select>
         </div>
 

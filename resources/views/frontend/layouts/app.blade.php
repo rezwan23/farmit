@@ -63,8 +63,15 @@
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             
-                                            <li class="active dropdown"><a href="#">Carrier Posts</a>
-                                                
+                                            <li class="active dropdown"><a href="{{route('carrierPosts')}}">Carrier Posts</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{route('carrierposts.request')}}">Request Carry Post</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{route('carrierposts.request.buyer')}}">Carry Requests By Buyers</a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                             
                                         </ul>
@@ -72,78 +79,56 @@
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             
-                                            <li class="active dropdown"><a href="#">Shop</a>
-                                                
-                                            </li>
+                                            <li class="active dropdown"><a href="{{route('home')}}">Shop</a></li>
                                             
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
                                         <ul>
                                             <li class="header-shop-cart"><a href="#"><i
-                                                        class="fas fa-shopping-basket"></i><span>2</span></a>
+                                                        class="fas fa-shopping-basket"></i><span>{{$carts->count()}}</span></a>
                                                 <ul class="minicart">
+                                                    @foreach($carts as $cart)
                                                     <li class="d-flex align-items-start">
                                                         <div class="cart-img">
                                                             <a href="#">
-                                                                <img src="/frontend/img/product/cart_p01.jpg" alt="">
+                                                                <img src="/uploads/{{$cart->attributes->first()->product_image}}" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="cart-content">
                                                             <h4>
-                                                                <a href="#">Charity Nike Brand Yellow T-Shirt</a>
+                                                                <a href="#">{{$cart->attributes->first()->product_name}}</a>
                                                             </h4>
                                                             <div class="cart-price">
-                                                                <span class="new">$229.9</span>
-                                                                <span>
-                                                                    <del>$229.9</del>
-                                                                </span>
+                                                                <span class="new">{{$cart->attributes->first()->sell_price}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="del-icon">
-                                                            <a href="#">
+                                                            <a href="{{route('cart.remove', $cart->id)}}">
                                                                 <i class="far fa-trash-alt"></i>
                                                             </a>
                                                         </div>
                                                     </li>
-                                                    <li class="d-flex align-items-start">
-                                                        <div class="cart-img">
-                                                            <a href="#">
-                                                                <img src="/frontend/img/product/cart_p02.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h4>
-                                                                <a href="#">BackPack For School Student</a>
-                                                            </h4>
-                                                            <div class="cart-price">
-                                                                <span class="new">$229.9</span>
-                                                                <span>
-                                                                    <del>$229.9</del>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="del-icon">
-                                                            <a href="#">
-                                                                <i class="far fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </li>
+                                                    @endforeach
                                                     <li>
                                                         <div class="total-price">
                                                             <span class="f-left">Total:</span>
-                                                            <span class="f-right">$239.9</span>
+                                                            <span class="f-right">{{\Cart::getTotal()}}</span>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="checkout-link">
-                                                            <a href="#">Shopping Cart</a>
                                                             <a class="red-color" href="#">Checkout</a>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="header-btn"><a href="/login" class="btn gradient-btn">Login/Register</a></li>
+                                            @if(!auth()->check())
+                                                <li class="header-btn"><a href="/login" class="btn gradient-btn">Login/Register</a></li>
+                                            
+                                            @else
+                                                <li class="header-btn"><a href="/dashboard" class="btn gradient-btn">Dashboard</a></li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </nav>
@@ -222,82 +207,20 @@
                                             <li><i class="fas fa-map-marker-alt"></i> <span>Address : </span>PO Box W75 Street
                                                 lan West new queens</li>
                                             <li><i class="fas fa-headphones"></i> <span>Phone : </span>+24 1245 654 235</li>
-                                            <li><i class="fas fa-envelope-open"></i><span>Email : </span><a href="https://themebeyond.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0999e969fb09588959d809c95de939f9d">[email&#160;protected]</a></li>
+                                            <li><i class="fas fa-envelope-open"></i><span>Email : contact@farmit.com</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>Products</h5>
-                                </div>
-                                <div class="fw-link">
-                                    <ul>
-                                        <li><a href="#">Hydroponic (26)</a></li>
-                                        <li><a href="#">Agriculture (11)</a></li>
-                                        <li><a href="#">Foods (9)</a></li>
-                                        <li><a href="#">Milking (3)</a></li>
-                                        <li><a href="#">Nutrition (3)</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="col-xl-3 col-lg-4 col-sm-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>Need Help?</h5>
-                                </div>
-                                <div class="footer-blog-post">
-                                    <ul>
-                                        <li>
-                                            <div class="f-blog-post-thumb">
-                                                <a href="#"><img src="/frontend/img/blog/f_blog_thumb01.jpg" alt=""></a>
-                                            </div>
-                                            <div class="f-blog-post-content">
-                                                <h5><a href="#">Agriculture is the science and art of cultivating</a></h5>
-                                                <span>Tonoy Pueyo</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="f-blog-post-thumb">
-                                                <a href="#"><img src="/frontend/img/blog/f_blog_thumb01.jpg" alt=""></a>
-                                            </div>
-                                            <div class="f-blog-post-content">
-                                                <h5><a href="#">Whereby farming doated species create</a></h5>
-                                                <span>Mark Wiens</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="col-xl-3 col-lg-4 col-md-6">
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-35">
-                                    <h5>Follow us</h5>
-                                </div>
-                                <div class="footer-social">
-                                    <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="footer-widget mb-50">
-                                <div class="fw-title mb-30">
-                                    <h5>newsletter sign up</h5>
-                                </div>
-                                <div class="footer-newsletter">
-                                    <form action="#">
-                                        <input type="text" placeholder="Enter your email">
-                                        <button><i class="fas fa-rocket"></i></button>
-                                    </form>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>

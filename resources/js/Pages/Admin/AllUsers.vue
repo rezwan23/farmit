@@ -3,7 +3,7 @@
     <Sidebar :user="user"></Sidebar>
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <Header title="Carrier Posts"></Header>
+      <Header title="All Users"></Header>
       <!-- /.content-header -->
 
       <!-- Main content -->
@@ -11,12 +11,12 @@
         <div class="container-fluid">
           <div class="card">
             <h4 class="card-header">
-              All My Carrier Post
-              <span v-if="user.type != 'admin'" class="float-right">
+              All Users
+              <span v-if="user.type == 'admin'" class="float-right">
                 <inertia-link
-                  :href="route('carrierpost.create')"
+                  :href="route('create.admin.user')"
                   class="btn btn-primary btn-sm"
-                  >Create Post</inertia-link
+                  >Create User</inertia-link
                 >
               </span>
             </h4>
@@ -25,23 +25,17 @@
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <td>Journey Date And Time</td>
-                    <th>Description</th>
-                    <th>From</th>
-                    <th>To</th>
+                    <th>Name</th>
+                    <th>type</th>
                     <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(item, index) in posts" :key="'post' + index">
+                  <tr v-for="(item, index) in users" :key="'post' + index">
                     <td>{{ index + 1 }}</td>
-                    <td>{{dateFormat(item.journey_date_and_time)}}</td>
-                    <td>{{ item.description }}</td>
+                    <td>{{ item.name }}</td>
                     <td>
-                      {{item.from_district.name}} - {{item.from_thana.name}} - {{item.from_post_office.name}}
-                    </td>
-                    <td>
-                      {{item.to_district.name}} - {{item.to_thana.name}} - {{item.to_post_office.name}}
+                      <span class="text-capitalize">{{item.type}}</span>
                     </td>
                     <td>
                       <button
@@ -68,7 +62,6 @@
 import Sidebar from "./Sidebar.vue";
 import Header from "./Header.vue";
 import Select2 from "vue3-select2-component";
-import moment from 'moment';
 
 import { showMessage } from "./helpers.js";
 import Input from "@/Components/Input.vue";
@@ -83,7 +76,7 @@ export default {
   },
   props: {
     user: {},
-    posts: Array,
+    users: Array,
   },
   data() {
     return {
@@ -101,7 +94,7 @@ export default {
       let flag = confirm("Are You Sure??");
       if (flag) {
         axios
-          .post(`delete-carrier-post/` + item.id)
+          .post(`delete-user/` + item.id)
           .then((res) => {
             showMessage(res.data.message, "success");
             window.location.reload();
@@ -111,9 +104,6 @@ export default {
           });
       }
     },
-    dateFormat(date){
-      return moment(date).format('LLLL')
-    }
   },
 };
 </script>

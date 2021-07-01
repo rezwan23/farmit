@@ -12,7 +12,7 @@
           <div class="card">
             <h4 class="card-header">
               All My Farmer Post
-              <span class="float-right">
+              <span v-if="user.type != 'admin'" class="float-right">
                 <inertia-link
                   :href="route('farmerposts.create')"
                   class="btn btn-primary btn-sm"

@@ -16,7 +16,7 @@
           <div class="info">
             <a href="#" class="d-block"
               >{{ user.name }} -
-              {{user.type}}</a
+              <span class="badge badge-primary">{{user.type}}</span></a
             >
           </div>
         </div>
@@ -31,7 +31,7 @@
           >
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-header"> MENUS</li>
+            <li class="nav-header"><span class="text-uppercase">{{user.type}}</span> MENUS</li>
             <li class="nav-item" v-if="user.type == 'Farmer'">
               <inertia-link :href="route('farmerposts.create')" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
@@ -54,6 +54,51 @@
               <inertia-link :href="route('carrierpost.all.my')" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
                 <p>All My Carrier Posts</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'Buyer'">
+              <inertia-link :href="route('carrierposts.request')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>Create Carry Request Post</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'Buyer'">
+              <inertia-link :href="route('carrierrequestpost.all.my')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>My Carrier Request Posts</p>
+              </inertia-link>
+            </li>
+            
+
+          
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('farmerposts.index')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All Farmer Posts</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('carrierpost.all.my')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All Carrier Posts</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('carrierrequestpost.all.my')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All Carrier Request Posts</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('create.admin.user')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>Create Admin User</p>
+              </inertia-link>
+            </li>
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('all.admin.user')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All Users</p>
               </inertia-link>
             </li>
           </ul>
