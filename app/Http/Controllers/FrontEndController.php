@@ -27,7 +27,7 @@ class FrontEndController extends Controller
 
     public function addToCart(SellPost $item)
     {  
-        \Cart::add(455, $item->product_name, $item->sell_price, 1, ['item' => $item]);
+        \Cart::add($item->id, $item->product_name, $item->sell_price, 1, ['item' => $item]);
         return back();
     }
 

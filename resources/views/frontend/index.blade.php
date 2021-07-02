@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            @foreach($posts as $post)
+        @foreach($posts as $post)
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="shop-item text-center mb-40">
                     <div class="shop-thumb mb-20">
