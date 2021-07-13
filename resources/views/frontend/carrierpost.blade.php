@@ -24,8 +24,9 @@
 <!-- shop-area -->
 <section class="shop-area shop-bg pb-75" data-background="/frontend/img/bg/shop_bg.jpg">
     <div class="container">
+    <form action="">
         <div class="row">
-            <div class="col-12">
+            <!-- <div class="col-12">
                 <div class="shop-action-wrap text-center text-sm-left d-block d-sm-flex align-items-center justify-content-between">
                     <div class="shop-action-form">
                         <form action="#">
@@ -38,8 +39,39 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="From">From District</label>
+                        <select name="from_district_id" id="" class="form-control">
+                            <option value="">Select</option>
+                            @foreach($districts as $district)
+                            <option value="{{$district->district_id}}">{{$district->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="From">To District</label>
+                        <select name="to_district_id" id="" class="form-control">
+                            <option value="">Select</option>
+                            @foreach($districts as $district)
+                            <option value="{{$district->district_id}}">{{$district->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div>
+                <div class="form-group">
+                        <label for="From">Search</label>
+                        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                    </div>
+                </div>
+            
         </div>
+        </form>
         <div class="row justify-content-center">
             @foreach($posts as $post)
             <div class="col-lg-4 col-md-6 col-sm-8">

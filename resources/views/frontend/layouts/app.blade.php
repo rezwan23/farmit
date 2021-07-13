@@ -63,8 +63,11 @@
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             
-                                            <li class="active dropdown"><a href="{{route('carrierPosts')}}">Carrier Posts</a>
+                                            <li class="active dropdown"><a href="#">Carrier Menu</a>
                                                 <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{route('carrierPosts')}}">Carrier Posts</a>
+                                                    </li>
                                                     <li>
                                                         <a href="{{route('carrierposts.request')}}">Request Carry Post</a>
                                                     </li>
