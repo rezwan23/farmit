@@ -78,7 +78,7 @@
                 <div class="shop-item text-center mb-40">
                     <div class="shop-item-content">
                         <div class="shop-item-rating">
-                            Created By : {{$post->user->name}}
+                            Created By : {{$post->user->name}} -- {{$post->user->phone_no}}
                             <br>
                             From : {{$post->fromDistrict->name}} - {{$post->fromThana->name}} - {{$post->fromPostOffice->name}}
                             <br>
