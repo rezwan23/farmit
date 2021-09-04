@@ -56,7 +56,7 @@
                                 <div class="header-bg" data-background="/frontend/img/bg/header_bg.jpg"></div>
                                 <nav class="menu-nav show">
                                     <div class="logo">
-                                        <a href="index.html">
+                                        <a href="{{route('home')}}">
                                             <img src="/frontend/img/logo/logo.png" alt="Logo">
                                         </a>
                                     </div>
@@ -92,36 +92,55 @@
                                                         class="fas fa-shopping-basket"></i><span>{{$carts->count()}}</span></a>
                                                 <ul class="minicart">
                                                     @foreach($carts as $cart)
-                                                    <li class="d-flex align-items-start">
-                                                        <div class="cart-img">
-                                                            <a href="#">
-                                                                <img src="/uploads/{{$cart->attributes->first()->product_image}}" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h4>
-                                                                <a href="#">{{$cart->attributes->first()->product_name}}</a>
-                                                            </h4>
-                                                            <div class="cart-price">
-                                                                <span class="new">{{$cart->attributes->first()->sell_price}}</span>
+                                                        @if($cart->id != -1)
+                                                        <li class="d-flex align-items-start">
+                                                             <div class="cart-img">
+                                                                <a href="#">
+                                                                    <img src="/uploads/{{$cart->attributes->first()->product_image}}" alt="">
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                        <div class="del-icon">
-                                                            <a href="{{route('cart.remove', $cart->id)}}">
-                                                                <i class="far fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </li>
+                                                            <div class="cart-content">
+                                                                <h4>
+                                                                    <a href="#">{{$cart->attributes->first()->product_name}}</a>
+                                                                </h4>
+                                                                <div class="cart-price">
+                                                                    <span class="new">{{$cart->price * $cart->quantity}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="del-icon">
+                                                                <a href="{{route('cart.remove', $cart->id)}}">
+                                                                    <i class="far fa-trash-alt"></i>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                        @endif
+                                                    @endforeach
+                                                    @foreach($carts as $cart)
+                                                        @if($cart->id == -1)
+                                                        
+                                                        <li>
+                                                            <div class="total-price">
+                                                                <span class="f-left">Carrier:</span>
+                                                                <span class="f-right">{{$cart->attributes->first()->user->name.'-'.$cart->attributes->first()->user->phone_no}}</span>
+                                                            </div>
+                                                        </li>
+                                                        
+                                                        @endif
                                                     @endforeach
                                                     <li>
                                                         <div class="total-price">
-                                                            <span class="f-left">Total:</span>
+                                                            <span class="f-left">Total (Without Carrier):</span>
                                                             <span class="f-right">{{\Cart::getTotal()}}</span>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="checkout-link">
-                                                            <a class="red-color" href="#">Checkout</a>
+                                                            <a class="red-color" href="{{route('checkout')}}">Checkout</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="checkout-link">
+                                                            <a class="red-color" href="{{route('cart.clear')}}">Clear Cart</a>
                                                         </div>
                                                     </li>
                                                 </ul>

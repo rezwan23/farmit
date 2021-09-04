@@ -63,4 +63,30 @@ class FrontEndController extends Controller
             'carts' =>  \Cart::getContent(),
         ]);
     }   
+
+    public function addCarrierToCart(CarrierPost $item)
+    {
+        $carrier = \Cart::get(-1);
+        if(!$carrier){
+            \Cart::add(-1, 'carrier-post', 0, 1, ['item' => $item->load('user')]);
+        }
+        return back();
+    }
+
+    public function clearCart()
+    {
+        \Cart::clear();
+        return back();
+    }
+
+    public function checkout()
+    {
+        return view('frontend.checkout', ['carts' => \Cart::getContent()]);
+    }
+
+    public function reduceCartItem($item)
+    {
+        \Cart::update($item, ['quantity' => -1]);
+        return back();
+    }
 }

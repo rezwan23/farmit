@@ -24,9 +24,13 @@ Route::get('/carrier-posts', [FrontEndController::class, 'showCarrierPosts'])->n
 Route::get('/carrier-request-posts', [FrontEndController::class, 'showCarrierRequestPosts'])->name('carrierposts.request.buyer');
 
 Route::get('/cart-add/{item}', [FrontEndController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart-reduce/{item}', [FrontEndController::class, 'reduceCartItem'])->name('cart.reduce');
+Route::get('/cart-add-carrier/{item}', [FrontEndController::class, 'addCarrierToCart'])->name('addCarrierToCart');
 
 
 Route::get('/cart-remove/{item}', [FrontEndController::class, 'removeCart'])->name('cart.remove');
+Route::get('/cart-clear', [FrontEndController::class, 'clearCart'])->name('cart.clear');
+Route::get('/checkout', [FrontEndController::class, 'checkout'])->name('checkout');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function(){

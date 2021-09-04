@@ -87,6 +87,10 @@
                             Description : {!!$post->description!!}
                         </div>
                         
+                        <a class="btn btn-primary" href="{{route('addCarrierToCart', $post)}}">
+                            <span>Add To Cart</span>
+                        </a>
+                        
                     </div>
                 </div>
             </div>
