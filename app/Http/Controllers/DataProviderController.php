@@ -15,7 +15,7 @@ class DataProviderController extends Controller
     public function provide(Request $request)
     {
 
-        if(!method_exists($this, "get{$request->provider}")){
+        if(!method_exists($this, "get".$request->provider)){
             return response(['message' => 'Data Not Found!'], 422);
         }
 
