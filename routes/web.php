@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
-
+use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +30,7 @@ Route::get('/cart-add-carrier/{item}', [FrontEndController::class, 'addCarrierTo
 
 Route::get('/cart-remove/{item}', [FrontEndController::class, 'removeCart'])->name('cart.remove');
 Route::get('/cart-clear', [FrontEndController::class, 'clearCart'])->name('cart.clear');
-Route::get('/checkout', [FrontEndController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [FrontEndController::class, 'checkout'])->name('checkout')->middleware('auth');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
@@ -71,5 +71,20 @@ Route::post('delete-user/{item}', [DashboardController::class, 'deleteUser']);
 
 
 Route::post('/logout-web', [DashboardController::class, 'logout'])->name('logout.web');
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->middleware('auth');
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
 
 require __DIR__.'/auth.php';

@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Agrifram - Agriculture and Organic Food</title>
+        <title>Farm2Home - Agriculture and Organic Food</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -121,7 +121,7 @@
                                                         <li>
                                                             <div class="total-price">
                                                                 <span class="f-left">Carrier:</span>
-                                                                <span class="f-right">{{$cart->attributes->first()->user->name.'-'.$cart->attributes->first()->user->phone_no}}</span>
+                                                                <span class="f-right">{{$cart->price}} <br>    {{$cart->attributes->first()->user->name.'-'.$cart->attributes->first()->user->phone_no}}</span>
                                                             </div>
                                                         </li>
                                                         
@@ -129,7 +129,7 @@
                                                     @endforeach
                                                     <li>
                                                         <div class="total-price">
-                                                            <span class="f-left">Total (Without Carrier):</span>
+                                                            <span class="f-left">Total:</span>
                                                             <span class="f-right">{{\Cart::getTotal()}}</span>
                                                         </div>
                                                     </li>
@@ -277,6 +277,7 @@
 
 
 
+        
 
 		<!-- JS here -->
         <!-- <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
@@ -298,6 +299,7 @@
         <script src="/frontend/js/aos.js"></script>
         <script src="/frontend/js/plugins.js"></script>
         <script src="/frontend/js/main.js"></script>
+        @yield('footer')
     </body>
 
 <!-- Mirrored from themebeyond.com/html/agrifram/agrifram/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Jun 2021 09:47:46 GMT -->

@@ -57,7 +57,7 @@
                         <div class="shop-item-rating">
                             {{$post->district->name}} - {{$post->thana->name}} - {{$post->post->name}}
                         </div>
-                        <h4><a data-toggle="modal" data-target="#postModal{{$post->id}}" href="#">{{$post->product_name}} - {{$post->user->name}}</a></h4>
+                        <h4><a data-toggle="modal" data-target="#postModal{{$post->id}}" href="#">{{$post->product_name}} - {{$post->weight}} Kg - {{$post->user->name}}</a></h4>
                         <span class="new-price">BDT {{$post->sell_price}}</span>
                     </div>
                 </div>

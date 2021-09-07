@@ -45,6 +45,11 @@
                       <input type="number" class="form-control" name="sell_price" :class="errors.hasOwnProperty('sell_price') ? 'is-invalid' : ''">
                       <span v-if="errors.hasOwnProperty('sell_price')" class="text-danger">{{errors.sell_price[0]}}</span>
                     </div>
+                    <div class="form-group">
+                      <label for="">Weight</label>
+                      <input type="number" class="form-control" name="weight" :class="errors.hasOwnProperty('weight') ? 'is-invalid' : ''">
+                      <span v-if="errors.hasOwnProperty('weight')" class="text-danger">{{errors.weight[0]}}</span>
+                    </div>
                   </div>
                 </div>
                 <div class="row">

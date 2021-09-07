@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CarrierPost;
 use App\Models\CarrierRequestPost;
+use App\Models\Distance;
 use App\Models\District;
 use App\Models\PostOffice;
 use App\Models\SellPost;
@@ -66,9 +67,31 @@ class FrontEndController extends Controller
 
     public function addCarrierToCart(CarrierPost $item)
     {
+        $carts = \Cart::getContent()->toArray();
+        // dd($carts);
+        $item->load('fromDistrict', 'toDistrict');
+
+        $totalWeight = 0;
+
+        array_walk($carts, function($val, $key) use(&$totalWeight) {
+            if($key != -1){
+                $totalWeight += $val['attributes']['item']['weight'] * $val['quantity'];
+            }
+        });
+
+        $distance = Distance::where('from', $item->fromDistrict->name)
+        ->where('to', $item->toDistrict->name)->first()->distance;
+
+        $amount = $totalWeight * $distance * .1;
+
+        if($amount <= 100){
+            $amount = 100;
+        }else{
+            $amount = ceil($amount);
+        }
         $carrier = \Cart::get(-1);
         if(!$carrier){
-            \Cart::add(-1, 'carrier-post', 0, 1, ['item' => $item->load('user')]);
+            \Cart::add(-1, 'carrier-post', $amount, 1, ['item' => $item->load('user')]);
         }
         return back();
     }
