@@ -220,10 +220,10 @@
                         <div class="col-xl-3 col-lg-4 col-md-6">
                             <div class="footer-widget mb-50">
                                 <div class="footer-logo mb-35">
-                                    <a href="index.html"><img src="/frontend/img/logo/w_logo.png" alt=""></a>
+                                    <a href="{{route('home')}}"><img src="/frontend/img/logo/logo.png" alt=""></a>
                                 </div>
                                 <div class="footer-text">
-                                    <p>Agrifram Farming of relse etras sheets connig passag.</p>
+                                    <p>Farm2Home.</p>
                                     <div class="footer-contact">
                                         <ul>
                                             <li><i class="fas fa-map-marker-alt"></i> <span>Address : </span>PO Box W75 Street

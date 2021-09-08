@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CarrierPost;
 use App\Models\CarrierRequestPost;
+use App\Models\CarrierRequestPostResponse;
 use App\Models\Distance;
 use App\Models\District;
 use App\Models\PostOffice;
@@ -62,6 +63,7 @@ class FrontEndController extends Controller
         return view('frontend.carrierrequestpost', [
             'posts' => CarrierRequestPost::with('user', 'fromDistrict', 'fromThana', 'fromPostOffice', 'toDistrict', 'toThana', 'toPostOffice')->get(),
             'carts' =>  \Cart::getContent(),
+            'carrierPosts' => CarrierPost::where('user_id', auth()->user()->id)->get(),
         ]);
     }   
 
@@ -110,6 +112,28 @@ class FrontEndController extends Controller
     public function reduceCartItem($item)
     {
         \Cart::update($item, ['quantity' => -1]);
+        return back();
+    }
+
+    public function respondToRequest(Request $request)
+    {
+        $request->validate(['carrier_post_id' => 'required']);
+        // dd($request->all());
+
+        CarrierRequestPostResponse::create($request->all());
+
+        $post = CarrierRequestPost::find($request->carrier_request_post_id);
+        $mobile = $post->load('user')->user->phone_no;
+        // dd($mobile);
+
+        $text = "Someone has responded to your carry request post! Follow \n". route('carrierPosts');
+
+        $text = urlencode($text);
+
+        $url = "http://66.45.237.70/api.php?username=rezwan23&password=3YFRB4VD&number=$mobile&message=$text";
+
+        $smsresult = file_get_contents("$url");
+
         return back();
     }
 }
