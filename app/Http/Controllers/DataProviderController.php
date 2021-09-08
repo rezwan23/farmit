@@ -14,12 +14,13 @@ class DataProviderController extends Controller
 
     public function provide(Request $request)
     {
+        dd($request->all());
 
-        if(!method_exists($this, "get".$request->provider)){
+        if(!method_exists($this, "get".$request->get('provider'))){
             return response(['message' => 'Data Not Found!'], 422);
         }
 
-        return $this->{'get'.$request->provider}($request);
+        return $this->{'get'.$request->get('provider')}($request);
     }
 
     public function getThanaAndPostOffices($request)

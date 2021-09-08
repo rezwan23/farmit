@@ -226,10 +226,9 @@
                                     <p>Agrifram Farming of relse etras sheets connig passag.</p>
                                     <div class="footer-contact">
                                         <ul>
-                                            <li><i class="fas fa-map-marker-alt"></i> <span>Address : </span>PO Box W75 Street
-                                                lan West new queens</li>
-                                            <li><i class="fas fa-headphones"></i> <span>Phone : </span>+24 1245 654 235</li>
-                                            <li><i class="fas fa-envelope-open"></i><span>Email : contact@farmit.com</span></a></li>
+                                            <li><i class="fas fa-map-marker-alt"></i> <span>Address : </span>91, Gulshan 1, Dhaka</li>
+                                            <li><i class="fas fa-headphones"></i> <span>Phone : </span>+8801710000000</li>
+                                            <li><i class="fas fa-envelope-open"></i><span>Email : contact@farm2home.com</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -255,7 +254,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="copyright-text">
-                                <p>Copyright © 2020 <a href="#">Agrifram</a> All Rights Reserved.</p>
+                                <p>Copyright © 2020 <a href="#">Farm2Home</a> All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 d-none d-md-block">

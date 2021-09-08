@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/get-data', [DataProviderController::class, 'provide']);
+// Route::get('/get-data', [DataProviderController::class, 'provide']);
