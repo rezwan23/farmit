@@ -63,6 +63,12 @@
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             
+                                            
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
                                             <li class="active dropdown"><a href="#">Carrier Menu</a>
                                                 <ul class="submenu">
                                                     <li>
@@ -77,13 +83,7 @@
                                                 </ul>
                                             </li>
                                             <li class="active dropdown"><a href="{{route('home')}}">Shop</a></li>
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
-                                        <ul class="navigation">
-                                            
-                                            
+                                            <li class="active dropdown"><a href="#">Contact Us</a></li>
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
