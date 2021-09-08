@@ -221,6 +221,17 @@ class SslCommerzPaymentController extends Controller
                 $url = "http://66.45.237.70/api.php?username=rezwan23&password=3YFRB4VD&number=$mobileNumbers&message=$text";
 
                 $smsresult = file_get_contents("$url");
+
+
+                $mobileNumbers = $order->load('carrier')->carrier->delivered_to_mobile_number;
+
+                $text = "Order ID : {$order->id}. Do not delete upto delivery.";
+
+                $text = urlencode($text);
+        
+                $url = "http://66.45.237.70/api.php?username=rezwan23&password=3YFRB4VD&number=$mobileNumbers&message=$text";
+
+                $smsresult = file_get_contents("$url");
                 
                 // $number = $mobileNumbers;
 

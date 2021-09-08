@@ -23,6 +23,7 @@ Route::get('/', [FrontEndController::class, 'index'])->name('home');
 Route::get('/carrier-posts', [FrontEndController::class, 'showCarrierPosts'])->name('carrierPosts');
 
 Route::get('/carrier-request-posts', [FrontEndController::class, 'showCarrierRequestPosts'])->name('carrierposts.request.buyer');
+Route::post('/carrier-request-post-respond/', [FrontEndController::class, 'respondToRequest'])->name('carrierposts.respond');
 
 Route::get('/cart-add/{item}', [FrontEndController::class, 'addToCart'])->name('addToCart');
 Route::get('/cart-reduce/{item}', [FrontEndController::class, 'reduceCartItem'])->name('cart.reduce');

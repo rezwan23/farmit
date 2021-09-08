@@ -10,4 +10,8 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'total_amount', 'status'];
+
+    public function carrier(){
+        return $this->hasOne(CarrierAssign::class);
+    }
 }

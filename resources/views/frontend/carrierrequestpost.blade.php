@@ -53,6 +53,9 @@
                             To : {{$post->toDistrict->name}} - {{$post->toThana->name}} - {{$post->toPostOffice->name}}
                             <br>
                             Description : {!!$post->description!!}
+                            @if(auth()->check() && auth()->user()->type == 'Carrier')
+                            <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm_{{$post->id}}">Respond</button>
+                            @endif
                         </div>
                         
                     </div>
@@ -62,6 +65,34 @@
         </div>
     </div>
 </section>
+@foreach($posts as $post)
+<div class="modal fade bd-example-modal-sm_{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="card">
+            <h3 class="card-header">Select Your Carrier Post</h3>
+            <form action="{{route('carrierposts.respond')}}" method="post">
+                @csrf
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Select Carrier Post</label>
+                        <input type="hidden" name="responsed_by" value="{{auth()->user()->id}}">
+                        <input type="hidden" name="carrier_request_post_id" value="{{$post->id}}">
+                        <select name="carrier_post_id" class="form-control" id="">
+                            @foreach($carrierPosts as $cPost)
+                                <option value="{{$cPost->id}}">{{$cPost->description}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit"  class="btn btn-primary">Respond</button>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+  </div>
+</div>
+@endforeach
 <!-- shop-area-end -->
 
 @endsection
