@@ -66,6 +66,7 @@
     </div>
 </section>
 @foreach($posts as $post)
+@if(auth()->check())
 <div class="modal fade bd-example-modal-sm_{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
@@ -92,6 +93,7 @@
     </div>
   </div>
 </div>
+@endif
 @endforeach
 <!-- shop-area-end -->
 

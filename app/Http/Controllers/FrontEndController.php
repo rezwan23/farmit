@@ -63,7 +63,7 @@ class FrontEndController extends Controller
         return view('frontend.carrierrequestpost', [
             'posts' => CarrierRequestPost::with('user', 'fromDistrict', 'fromThana', 'fromPostOffice', 'toDistrict', 'toThana', 'toPostOffice')->get(),
             'carts' =>  \Cart::getContent(),
-            'carrierPosts' => CarrierPost::where('user_id', auth()->user()->id)->get(),
+            'carrierPosts' => auth()->check() ? CarrierPost::where('user_id', auth()->user()->id)->get() : [],
         ]);
     }   
 
