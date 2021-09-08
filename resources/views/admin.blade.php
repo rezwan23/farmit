@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FarmIt| Dashboard </title>
+    <title>Farm2Home| Dashboard </title>
 
     <link rel="shortcut icon" type="image/x-icon" href="/frontend/img/favicon.png">
     <!-- Google Font: Source Sans Pro -->
