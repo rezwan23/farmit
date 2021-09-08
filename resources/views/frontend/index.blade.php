@@ -24,6 +24,7 @@
 <!-- shop-area -->
 <section class="shop-area shop-bg pb-75" data-background="/frontend/img/bg/shop_bg.jpg">
     <div class="container">
+        {{--
         <div class="row">
             <div class="col-12">
                 <div class="shop-action-wrap text-center text-sm-left d-block d-sm-flex align-items-center justify-content-between">
@@ -43,6 +44,7 @@
                 </div>
             </div>
         </div>
+        --}}
         <div class="row justify-content-center">
         @foreach($posts as $post)
             <div class="col-lg-4 col-md-6 col-sm-8">

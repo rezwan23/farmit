@@ -158,11 +158,10 @@
                             <div class="header-bottom-wrap d-none d-lg-flex">
                                 <div class="header-tag-list">
                                     <ul>
-                                        <li><a href="#">hydroponic</a></li>
                                         <li><a href="#">agriculture</a></li>
                                         <li><a href="#">food</a></li>
                                         <li><a href="#">nutrition</a></li>
-                                        <li><a href="#">ACCESSORIES</a></li>
+                                        <li><a href="#">fruit</a></li>
                                     </ul>
                                 </div>
                                 <div class="header-bottom-search">
