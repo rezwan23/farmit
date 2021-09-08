@@ -76,13 +76,13 @@
                                                     </li>
                                                 </ul>
                                             </li>
+                                            <li class="active dropdown"><a href="{{route('home')}}">Shop</a></li>
                                             
                                         </ul>
                                     </div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
                                             
-                                            <li class="active dropdown"><a href="{{route('home')}}">Shop</a></li>
                                             
                                         </ul>
                                     </div>

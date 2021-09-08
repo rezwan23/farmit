@@ -60,6 +60,7 @@ class FrontEndController extends Controller
 
     public function showCarrierRequestPosts()
     {
+        dd(CarrierRequestPost::with('user', 'fromDistrict', 'fromThana', 'fromPostOffice', 'toDistrict', 'toThana', 'toPostOffice')->get());
         return view('frontend.carrierrequestpost', [
             'posts' => CarrierRequestPost::with('user', 'fromDistrict', 'fromThana', 'fromPostOffice', 'toDistrict', 'toThana', 'toPostOffice')->get(),
             'carts' =>  \Cart::getContent(),
