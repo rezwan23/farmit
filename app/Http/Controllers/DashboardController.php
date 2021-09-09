@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CarrierPost;
 use App\Models\CarrierRequestPost;
+use App\Models\Feedback;
 use App\Models\SellPost;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -222,5 +223,10 @@ class DashboardController extends Controller
     {
         $item->delete();
         return response(['message' => 'User Deleted!']);
+    }
+
+    public function allFeedback()
+    {
+        return Inertia::render('Admin/AllFeedback', ['feedbacks' => Feedback::all(),'user' => auth()->user()]);
     }
 }

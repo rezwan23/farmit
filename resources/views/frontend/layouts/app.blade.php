@@ -69,6 +69,26 @@
                                     </div>
                                     <div class="navbar-wrap main-menu d-none d-lg-flex">
                                         <ul class="navigation">
+                                            <li class="active dropdown"><a href="{{route('deliveryInit')}}">Delivery</a></li>
+
+                                            @if(auth()->check() && (auth()->user()->type == 'Buyer'))
+                                            <li class="active dropdown"><a href="#">Buyer Menu</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{route('buyer.orders')}}">My Orders</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @endif
+                                            @if(auth()->check() && (auth()->user()->type == 'Farmer'))
+                                            <li class="active dropdown"><a href="#">Farmer Menu</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{route('farmer.orders')}}">My Orders</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @endif
                                             <li class="active dropdown"><a href="#">Carrier Menu</a>
                                                 <ul class="submenu">
                                                     <li>
@@ -83,7 +103,7 @@
                                                 </ul>
                                             </li>
                                             <li class="active dropdown"><a href="{{route('home')}}">Shop</a></li>
-                                            <li class="active dropdown"><a href="#">Contact Us</a></li>
+                                            <li class="active dropdown"><a href="{{route('contact.us')}}">Contact Us</a></li>
                                         </ul>
                                     </div>
                                     <div class="header-action d-none d-md-block">
@@ -158,10 +178,10 @@
                             <div class="header-bottom-wrap d-none d-lg-flex">
                                 <div class="header-tag-list">
                                     <ul>
-                                        <li><a href="#">agriculture</a></li>
-                                        <li><a href="#">food</a></li>
-                                        <li><a href="#">nutrition</a></li>
-                                        <li><a href="#">fruit</a></li>
+                                        <li><a href="{{route('home')}}?type=Agriculture">agriculture</a></li>
+                                        <li><a href="{{route('home')}}?type=Food">food</a></li>
+                                        <li><a href="{{route('home')}}?type=Nutrition">nutrition</a></li>
+                                        <li><a href="{{route('home')}}?type=Fruits">fruit</a></li>
                                     </ul>
                                 </div>
                                 <div class="header-bottom-search">

@@ -23,16 +23,35 @@ Route::get('/', [FrontEndController::class, 'index'])->name('home');
 Route::get('/carrier-posts', [FrontEndController::class, 'showCarrierPosts'])->name('carrierPosts');
 
 Route::get('/carrier-request-posts', [FrontEndController::class, 'showCarrierRequestPosts'])->name('carrierposts.request.buyer');
+
 Route::post('/carrier-request-post-respond/', [FrontEndController::class, 'respondToRequest'])->name('carrierposts.respond');
 
 Route::get('/cart-add/{item}', [FrontEndController::class, 'addToCart'])->name('addToCart');
+
 Route::get('/cart-reduce/{item}', [FrontEndController::class, 'reduceCartItem'])->name('cart.reduce');
+
 Route::get('/cart-add-carrier/{item}', [FrontEndController::class, 'addCarrierToCart'])->name('addCarrierToCart');
+
+Route::get('/delivery-init', [FrontEndController::class, 'deliveryInit'])->name('deliveryInit');
+
+Route::post('/delivery-init', [FrontEndController::class, 'delivery'])->name('deliveryInit');
 
 
 Route::get('/cart-remove/{item}', [FrontEndController::class, 'removeCart'])->name('cart.remove');
+
 Route::get('/cart-clear', [FrontEndController::class, 'clearCart'])->name('cart.clear');
+
 Route::get('/checkout', [FrontEndController::class, 'checkout'])->name('checkout')->middleware('auth');
+
+Route::get('/contact-us', [FrontEndController::class, 'contactUs'])->name('contact.us');
+
+Route::post('/contact-us', [FrontEndController::class, 'saveFeedback']);
+
+Route::get('/my-farmer-orders', [FrontEndController::class, 'myFarmerOrders'])->name('farmer.orders');
+
+Route::get('/my-buyer-orders', [FrontEndController::class, 'myByuerOrders'])->name('buyer.orders');
+
+Route::get('/handover-to-carrier/{order}', [FrontEndController::class, 'handOverToCarrier'])->name('farmer.handover');
 
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
@@ -56,6 +75,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::post('/save-admin-user', [DashboardController::class, 'saveAdminUser'])->name('save.admin.user');
     
     Route::get('/all-users', [DashboardController::class, 'allUsers'])->name('all.admin.user');
+
+    Route::get('/all-feedback', [DashboardController::class, 'allFeedback'])->name('all.feedback');
 
 });
 

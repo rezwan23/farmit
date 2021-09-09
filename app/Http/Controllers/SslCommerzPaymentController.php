@@ -213,6 +213,7 @@ class SslCommerzPaymentController extends Controller
                 $mobileNumbers = User::where('id', $order->user_id)->pluck('phone_no')->implode(',');
 
 
+                // Buyer SMS
                 $text = "Your Transaction Successfully Completed!";
                 $text = urlencode($text);
         
@@ -223,9 +224,30 @@ class SslCommerzPaymentController extends Controller
                 $smsresult = file_get_contents("$url");
 
 
+                //Delevery
                 $mobileNumbers = $order->load('carrier')->carrier->delivered_to_mobile_number;
 
                 $text = "Order ID : {$order->id}. Do not delete upto delivery.";
+
+                $text = urlencode($text);
+        
+                $url = "http://66.45.237.70/api.php?username=rezwan23&password=3YFRB4VD&number=$mobileNumbers&message=$text";
+
+                $smsresult = file_get_contents("$url");
+
+                //Farmer
+                $sellPosts = $order->load('orderDetails.sellPost')->orderDetails;
+
+                $ids = [];
+
+                foreach($sellPosts as $detail){
+                    array_push($ids, $detail->sellPost->user_id);
+                }
+
+                $mobileNumbers = User::whereIn('id', $ids)->get()->pluck('phone_no')->implode(',');
+
+
+                $text = "Order ID : {$order->id} Carrier : {$order->load('carrier.user')->carrier->user->phone_no} | {$order->load('carrier.user')->carrier->user->name}";
 
                 $text = urlencode($text);
         

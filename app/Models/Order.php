@@ -14,4 +14,12 @@ class Order extends Model
     public function carrier(){
         return $this->hasOne(CarrierAssign::class);
     }
+
+    public function orderDetails(){
+        return $this->hasMany(OrderDetail::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

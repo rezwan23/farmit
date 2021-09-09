@@ -2,9 +2,9 @@
   <div>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="#" @click="goHome" class="brand-link">
         <!-- <img src="/frontend/img/logo/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <span class="brand-text font-weight-light">FarmIT</span>
+        <span class="brand-text font-weight-light">Farm2Home</span>
       </a>
 
       <!-- Sidebar -->
@@ -101,6 +101,12 @@
                 <p>All Users</p>
               </inertia-link>
             </li>
+            <li class="nav-item" v-if="user.type == 'admin'">
+              <inertia-link :href="route('all.feedback')" class="nav-link">
+                <i class="nav-icon far fa-image"></i>
+                <p>All FeedBack</p>
+              </inertia-link>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -114,7 +120,12 @@
 
 
 export default {
-    props : {user : {}}
+    props : {user : {}},
+    methods : {
+      goHome(){
+        window.location.replace(window.location.origin)
+      }
+    }
 }
 
 

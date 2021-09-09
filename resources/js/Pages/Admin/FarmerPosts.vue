@@ -50,6 +50,16 @@
                       <input type="number" class="form-control" name="weight" :class="errors.hasOwnProperty('weight') ? 'is-invalid' : ''">
                       <span v-if="errors.hasOwnProperty('weight')" class="text-danger">{{errors.weight[0]}}</span>
                     </div>
+                    <div class="form-group">
+                      <label for="">Weight</label>
+                      <select name="type" class="form-control" id="">
+                        <option>Food</option>
+                        <option>Agriculture</option>
+                        <option>Nutrition</option>
+                        <option>Fruits</option>
+                      </select>
+                      <span v-if="errors.hasOwnProperty('weight')" class="text-danger">{{errors.weight[0]}}</span>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
