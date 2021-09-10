@@ -91,6 +91,8 @@ class FrontEndController extends Controller
         $distance = Distance::where('from', $item->fromDistrict->name)
             ->where('to', $item->toDistrict->name)->first()->distance;
 
+            dd($distance);
+
             if($distance <= 100){
                 $ratio = .05;
             }else if($distance > 100 && $distance <= 200){
