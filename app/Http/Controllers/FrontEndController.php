@@ -104,12 +104,8 @@ class FrontEndController extends Controller
 
         $amount = $totalWeight * $distance * $ratio;
 
-            dd($amount);
-            // if ($amount <= 100) {
-        //     $amount = 100;
-        // } else {
-        //     $amount = ceil($amount);
-        // }
+        $amount = intval(ceil($amount));
+        
         $carrier = \Cart::get(-1);
         if (!$carrier) {
             \Cart::add(-1, 'carrier-post', $amount, 1, ['item' => $item->load('user')]);
