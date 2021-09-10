@@ -107,7 +107,7 @@ class FrontEndController extends Controller
         $amount = intval(ceil($amount));
         
         $carrier = \Cart::get(-1);
-        if (!$carrier) {
+        if (!$carrier && \Cart::getContent()->count() > 0) {
             \Cart::add(-1, 'carrier-post', $amount, 1, ['item' => $item->load('user')]);
         }
         return back();
