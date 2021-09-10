@@ -101,11 +101,11 @@ class FrontEndController extends Controller
             }else{
                 $ratio = .04;
             }
-            dd($ratio);
 
         $amount = $totalWeight * $distance * $ratio;
 
-        // if ($amount <= 100) {
+            dd($amount);
+            // if ($amount <= 100) {
         //     $amount = 100;
         // } else {
         //     $amount = ceil($amount);
