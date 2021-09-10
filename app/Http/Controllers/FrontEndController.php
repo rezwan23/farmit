@@ -91,7 +91,6 @@ class FrontEndController extends Controller
         $distance = Distance::where('from', $item->fromDistrict->name)
             ->where('to', $item->toDistrict->name)->first()->distance;
 
-            dd($totalWeight);
 
             if($distance <= 100){
                 $ratio = .05;
@@ -102,6 +101,7 @@ class FrontEndController extends Controller
             }else{
                 $ratio = .04;
             }
+            dd($ratio);
 
         $amount = $totalWeight * $distance * $ratio;
 
