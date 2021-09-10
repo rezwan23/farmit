@@ -10,7 +10,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+                            <li class="breadcrumb-item active" aria-current="page">Delivery</li>
                         </ol>
                     </nav>
                 </div>
@@ -24,7 +24,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="card">
-                    <h3 class="card-header">Contact Us</h3>
+                    <h3 class="card-header">Delivery</h3>
                     <!-- Default form subscription -->
                     <form class="text-center border border-light p-5" action="{{route('deliveryInit')}}" method="post">
                         @csrf

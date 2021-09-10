@@ -91,13 +91,23 @@ class FrontEndController extends Controller
         $distance = Distance::where('from', $item->fromDistrict->name)
             ->where('to', $item->toDistrict->name)->first()->distance;
 
-        $amount = $totalWeight * $distance * .1;
+            if($distance <= 100){
+                $ratio = .05;
+            }else if($distance > 100 && $distance <= 200){
+                $ratio = .06;
+            }else if($distance > 200 && $distance <= 300){
+                $ratio = .05;
+            }else{
+                $ratio = .04;
+            }
 
-        if ($amount <= 100) {
-            $amount = 100;
-        } else {
-            $amount = ceil($amount);
-        }
+        $amount = $totalWeight * $distance * $ratio;
+
+        // if ($amount <= 100) {
+        //     $amount = 100;
+        // } else {
+        //     $amount = ceil($amount);
+        // }
         $carrier = \Cart::get(-1);
         if (!$carrier) {
             \Cart::add(-1, 'carrier-post', $amount, 1, ['item' => $item->load('user')]);

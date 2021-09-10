@@ -24,7 +24,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="card">
-                    <h3 class="card-header">Contact Us</h3>
+                    <h3 class="card-header">Contact Us/Give Feedback</h3>
                     <!-- Default form subscription -->
                     <form class="text-center border border-light p-5" action="{{route('contact.us')}}" method="post">
                         @csrf
